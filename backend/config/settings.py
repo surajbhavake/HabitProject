@@ -91,11 +91,23 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #         'PORT':os.getenv('DB_PORT'),
 #     }
 # }
-DATABASES = {
-    "default": dj_database_url.parse(
-        os.environ.get("DATABASE_URL")
-    )
-}
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+if DATABASE_URL:
+    DATABASES = {
+        "default": dj_database_url.parse(DATABASE_URL)
+    }
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "habitdb",
+            "USER": "habituser",
+            "PASSWORD": "strongpassword",
+            "HOST": "localhost",
+            "PORT": "5432",
+        }
+    }
 
 
 # Password validation
