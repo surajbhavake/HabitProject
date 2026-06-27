@@ -51,3 +51,4 @@ jobs:
         run: |
           cd HabitTrackerWithRedux
           npm run build
+          
