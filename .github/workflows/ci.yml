@@ -3,11 +3,11 @@ name: Habit Tracker CI
 on:
   push:
     branches:
-      - main
+      - master
 
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
 
@@ -51,4 +51,3 @@ jobs:
         run: |
           cd HabitTrackerWithRedux
           npm run build
-          
