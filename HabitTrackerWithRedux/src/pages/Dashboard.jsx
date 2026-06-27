@@ -51,7 +51,7 @@ function Dashboard() {
      if (status === 'idle') {
       dispatch(fetchHabits());
     }
-  },[dispatch])
+  },[dispatch,status])
 
   if (status === 'loading') {
     return <div className="p-6 text-center">Loading...</div>;
