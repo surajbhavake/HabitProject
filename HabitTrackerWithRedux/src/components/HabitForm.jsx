@@ -1,21 +1,41 @@
-import React from 'react'
+// src/components/HabitForm.jsx
+import React from 'react';
+import Button from './Button';
 
-function HabitForm({habitName,onNameChange,onSubmit,isEditing,onUpdate}) {
+const HabitForm = ({ habitName, onNameChange, onSubmit, isEditing, onUpdate }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (isEditing) {
+      onUpdate();
+    } else {
+      onSubmit();
+    }
+  };
+
   return (
-    <div>
-      <div className='flex gap-2 items-center'>
-        <input type="text"
-        placeholder='Enter your habit'
-        value={habitName}
-        onChange={(e)=>onNameChange(e.currentTarget.value)}
-        className='flex-1 p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500'
+    <form onSubmit={handleSubmit} className="w-full">
+      <div className="flex gap-3 items-center bg-[#1E2353] rounded-2xl p-3 transition-all hover:bg-[#2A2F6A]">
+        <input
+          type="text"
+          placeholder="Enter your habit..."
+          value={habitName}
+          onChange={(e) => onNameChange(e.target.value)}
+          className="flex-1 bg-transparent text-white placeholder-white/50 px-4 py-3 outline-none text-[16px] font-medium"
+          autoFocus
         />
-
-        {isEditing ? (<button className='px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors' onClick={onUpdate}>Update</button>):(<button className='px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors' onClick={onSubmit}>Add</button>)
-          }
+        
+        {isEditing ? (
+          <Button variant="primary" size="md" type="submit">
+            Update Habit
+          </Button>
+        ) : (
+          <Button variant="green" size="md" type="submit">
+            + Add Habit
+          </Button>
+        )}
       </div>
-    </div>
-  )
-}
+    </form>
+  );
+};
 
-export default HabitForm
+export default HabitForm;
